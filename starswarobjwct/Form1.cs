@@ -13,27 +13,29 @@ namespace starswarobjwct
 {
     public partial class Form1 : Form
     {
-        Graphics G;
+        Graphics g;
 
         public Form1()
         {
             InitializeComponent();
-            G = this.CreateGraphics();
+            g = this.CreateGraphics();
         }
 
         private void Form1_Click(object sender, EventArgs e)
         {
-            Torpedo(100, 100, 100);
+            Torpedo(0, 0, 100);
         }
-
-        public void Torpedo (float torpedox, float torpedoy, float pixels)
+        public void Torpedo (float x, float y, float pixels)
         {
-            Pen expen = new Pen(Color.White);
-            G.DrawLine(expen, 150, 50 , 100, 100);
-            G.DrawLine(expen, 150, 50,200, 100);
-            G.DrawLine(expen, 200, 100, 150, 150);
-            G.DrawLine(expen, 100, 100, 150, 150);
-            G.DrawEllipse(expen, 75, 25, 150, 150);
+            float scale = pixels / 150;//dividing pixels
+
+            Pen torpen = new Pen(Color.White);//creates pen colour
+            g.DrawLine(torpen, 25 * scale + x, 75 * scale + y , 75 * scale + x, 25 *scale + y);//draws the square
+            g.DrawLine(torpen, 75 * scale + x , 25 *scale + y, 125 *scale + x, 75 *scale + y);//draws the square
+            g.DrawLine(torpen, 125 *scale + x, 75 * scale + y, 75 *scale + x, 125 *scale + y);//draws the square
+            g.DrawLine(torpen, 75 *scale + x, 125 *scale + y, 25 *scale + x, 75 *scale + y);//draws the square
+
+            g.DrawEllipse(torpen, 0 *scale + x, 0 *scale + y, 150 * scale , 150 * scale);//draws the circle
         }
     }
 }
